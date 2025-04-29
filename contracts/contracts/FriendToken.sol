@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 // Custom errors for gas-efficient reverts
 error CapExceeded();
-error Unauthorized();
+error Unauthorized(); // Note: Not used in contract but included as provided
 
 /// @title FriendToken - ERC-20 token for FriendChain MVP
 /// @notice Implements Friend (FRND) token with minting and hard cap for testnet
@@ -25,7 +25,7 @@ contract FriendToken is ERC20, Ownable {
         Ownable(initialOwner)
     {
         maxSupply = _maxSupply;
-        _mint(initialOwner, 1000 * 10 ** decimals());
+        _mint(initialOwner, 1000 * 10**decimals());
     }
 
     /// @notice Mints tokens to specified address (owner-only)
