@@ -11,7 +11,7 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      baseSepolia: process.env.BASE_SEPOLIA_RPC_URL.split("/").pop(), // Extracts Alchemy API key
+      baseSepolia: process.env.BASESCAN_API_KEY, // Extracts Alchemy API key
     },
     customChains: [
       {
@@ -23,5 +23,11 @@ module.exports = {
         },
       },
     ],
+    sourcify: {
+      enabled: false, // Suppresses Sourcify warning
+    },
+    etherscan: {
+      apiKey: process.env.HARDHAT_ETHERSCAN_API_KEY,
+    },
   },
 };
