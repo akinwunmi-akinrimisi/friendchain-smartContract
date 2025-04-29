@@ -36,6 +36,11 @@ contract GameFactory is Ownable {
 
     // Custom errors
     error InvalidTokenAddress();
+    error InvalidCreator();
+
+    // Events
+    event CreatorAuthorized(address indexed creator, uint256 timestamp);
+    event CreatorRevoked(address indexed creator, uint256 timestamp);
 
     // Constructor
     constructor(
@@ -51,8 +56,27 @@ contract GameFactory is Ownable {
         resolverAddress = _resolverAddress;
         entryPointAddress = _entryPointAddress;
     }
+
     // Get all game instances
     function getGameInstances() public view returns (address[] memory) {
         return gameInstances;
+    }
+
+    // Authorize a creator
+    function authorizeCreator(address creator) external onlyOwner {
+        if (creator == address(0)) {
+            revert InvalidCreator();
+        }
+        authorizedCreators[creator] = true;
+        emit CreatorAuthorized(creator, block.timestamp);
+    }
+
+    // Revoke a creator's authorization
+    function revokeCreator(address creator) external onlyOwner {
+        if (creator == address(0)) {
+            revert InvalidCreator();
+        }
+        authorizedCreators[creator] = false;
+        emit CreatorRevoked(creator, block.timestamp);
     }
 }
