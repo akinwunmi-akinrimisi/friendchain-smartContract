@@ -23,9 +23,9 @@ module.exports = {
         },
       },
     ],
-    sourcify: {
-      enabled: false, // Suppresses Sourcify warning
-    },
+  sourcify: {
+    enabled: false, // Suppresses Sourcify warning
+  },
     etherscan: {
       apiKey: process.env.HARDHAT_ETHERSCAN_API_KEY,
     },
