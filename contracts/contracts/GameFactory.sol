@@ -132,6 +132,7 @@ contract GameFactory is Ownable {
         try new GameInstance(
             tokenAddress,
             msg.sender,
+            gameId,
             stakeAmount,
             playerLimit,
             basename,

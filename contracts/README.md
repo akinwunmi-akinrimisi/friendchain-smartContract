@@ -13,7 +13,6 @@ npx hardhat ignition deploy ./ignition/modules/Lock.js
 ```
 
 
-
 Deploying contracts with account: 0x671b2d2b41AF93A1DBeb9E72e68E3Ce1C018B845
 FriendToken deployed to: 0x4e83e8658B27BEF023eE431B1A2D97e6B3d014AD
 GameFactory deployed to: 0x92612132Fce3542aDC196DF1b05b82ae48221452
@@ -53,3 +52,4 @@ npx hardhat verify 0x05251A2838f99cdBf4BB3710298090bD79198b83 0x4e83e8658B27BEF0
 - **GameFactory.sol Address**: `0xA5bBc7A0C122708463319e7802Ba9E6739FE048F`
 - **Network**: Base Sepolia
 - **Verification URL**: https://sepolia.basescan.org/address/0xA5bBc7A0C122708463319e7802Ba9E6739FE048F#code
+

@@ -2,12 +2,10 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("GameFactory", function () {
-  let GameFactory, gameFactory, owner, addr1, addr2, mockToken;
-  const TOKEN_ADDRESS = "0x8A7d82633697bF2FC2250661A1173c6139f326B1";
-  const NEW_TOKEN_ADDRESS = "0x9B8d82633697bF2FC2250661A1173c6139f326B2"; // Mock
-  const RESOLVER_ADDRESS = "0x0000000000000000000000000000000000000001"; // Mock
-  const ENTRY_POINT_ADDRESS = "0x0000000000000000000000000000000000000002"; // Mock
-  const STAKE_AMOUNT = ethers.parseEther("50"); // 50 FRND
+  let GameFactory, gameFactory, owner, addr1, addr2, mockToken, friendToken;
+  const RESOLVER_ADDRESS = "0x0000000000000000000000000000000000000001";
+  const ENTRY_POINT_ADDRESS = "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789";
+  const STAKE_AMOUNT = ethers.parseEther("50");
   const PLAYER_LIMIT = 5;
   const BASENAME = "creator.base.eth";
   const IPFS_HASH = "QmValidIpfsHash1234567890abcdef1234567890abcdef";
@@ -15,18 +13,26 @@ describe("GameFactory", function () {
   beforeEach(async function () {
     try {
       [owner, addr1, addr2] = await ethers.getSigners();
-      // Deploy a mock token for testing
+
+      // Deploy a fresh FriendToken contract
+      const FriendToken = await ethers.getContractFactory("FriendToken");
+      friendToken = await FriendToken.deploy(owner.address, ethers.parseEther("10000"));
+      await friendToken.waitForDeployment();
+
+      // Deploy a mock token for updating token address
       const MockToken = await ethers.getContractFactory("FriendToken");
       mockToken = await MockToken.deploy(owner.address, ethers.parseEther("10000"));
+      await mockToken.waitForDeployment();
+
       GameFactory = await ethers.getContractFactory("GameFactory");
       console.log("Deploying GameFactory with args:", {
-        TOKEN_ADDRESS,
+        tokenAddress: friendToken.target,
         owner: owner.address,
         RESOLVER_ADDRESS,
         ENTRY_POINT_ADDRESS
       });
       gameFactory = await GameFactory.deploy(
-        TOKEN_ADDRESS,
+        friendToken.target,
         owner.address,
         RESOLVER_ADDRESS,
         ENTRY_POINT_ADDRESS
@@ -40,7 +46,7 @@ describe("GameFactory", function () {
 
   describe("Constructor", function () {
     it("Should initialize correctly with valid inputs", async function () {
-      expect(await gameFactory.tokenAddress()).to.equal(TOKEN_ADDRESS);
+      expect(await gameFactory.tokenAddress()).to.equal(friendToken.target);
       expect(await gameFactory.owner()).to.equal(owner.address);
       expect(await gameFactory.resolverAddress()).to.equal(RESOLVER_ADDRESS);
       expect(await gameFactory.entryPointAddress()).to.equal(ENTRY_POINT_ADDRESS);
@@ -67,11 +73,12 @@ describe("GameFactory", function () {
 
     it("Should initialize with zero resolver and entry point addresses", async function () {
       const factory = await GameFactory.deploy(
-        TOKEN_ADDRESS,
+        friendToken.target,
         owner.address,
         ethers.ZeroAddress,
         ethers.ZeroAddress
       );
+      await factory.waitForDeployment();
       expect(await factory.resolverAddress()).to.equal(ethers.ZeroAddress);
       expect(await factory.entryPointAddress()).to.equal(ethers.ZeroAddress);
     });
@@ -91,13 +98,13 @@ describe("GameFactory", function () {
     it("Should revert if non-owner tries to authorize a creator", async function () {
       await expect(
         gameFactory.connect(addr1).authorizeCreator(addr2.address)
-      ).to.be.revertedWithCustomError(GameFactory, "OwnableUnauthorizedAccount");
+      ).to.be.revertedWithCustomError(gameFactory, "OwnableUnauthorizedAccount");
     });
 
     it("Should revert if authorizing zero address", async function () {
       await expect(
         gameFactory.authorizeCreator(ethers.ZeroAddress)
-      ).to.be.revertedWithCustomError(GameFactory, "InvalidCreator");
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidCreator");
     });
 
     it("Should allow owner to revoke a creator", async function () {
@@ -115,13 +122,13 @@ describe("GameFactory", function () {
       await gameFactory.authorizeCreator(addr1.address);
       await expect(
         gameFactory.connect(addr1).revokeCreator(addr1.address)
-      ).to.be.revertedWithCustomError(GameFactory, "OwnableUnauthorizedAccount");
+      ).to.be.revertedWithCustomError(gameFactory, "OwnableUnauthorizedAccount");
     });
 
     it("Should revert if revoking zero address", async function () {
       await expect(
         gameFactory.revokeCreator(ethers.ZeroAddress)
-      ).to.be.revertedWithCustomError(GameFactory, "InvalidCreator");
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidCreator");
     });
   });
 
@@ -161,7 +168,7 @@ describe("GameFactory", function () {
       expect(await gameFactory.nextGameId()).to.equal(2);
 
       const gameInstance = await ethers.getContractAt("GameInstance", instanceAddress);
-      expect(await gameInstance.tokenAddress()).to.equal(TOKEN_ADDRESS);
+      expect(await gameInstance.tokenAddress()).to.equal(friendToken.target);
       expect(await gameInstance.creator()).to.equal(addr1.address);
       expect(await gameInstance.stakeAmount()).to.equal(STAKE_AMOUNT);
       expect(await gameInstance.playerLimit()).to.equal(PLAYER_LIMIT);
@@ -225,11 +232,12 @@ describe("GameFactory", function () {
 
     it("Should return empty game instances initially", async function () {
       const factory = await GameFactory.deploy(
-        TOKEN_ADDRESS,
+        friendToken.target,
         owner.address,
         RESOLVER_ADDRESS,
         ENTRY_POINT_ADDRESS
       );
+      await factory.waitForDeployment();
       const gameInstances = await factory.getGameInstances();
       expect(gameInstances.length).to.equal(0);
     });
@@ -266,7 +274,7 @@ describe("GameFactory", function () {
 
       await expect(tx)
         .to.emit(gameFactory, "TokenContractUpdated")
-        .withArgs(TOKEN_ADDRESS, mockToken.target, block.timestamp);
+        .withArgs(friendToken.target, mockToken.target, block.timestamp);
 
       expect(await gameFactory.tokenAddress()).to.equal(mockToken.target);
 
