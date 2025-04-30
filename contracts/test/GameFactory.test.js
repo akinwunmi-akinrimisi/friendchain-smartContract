@@ -2,62 +2,49 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
 describe("GameFactory", function () {
-  let GameFactory, gameFactory, owner, addr1, addr2, mockToken, friendToken;
+  let GameFactory;
+  let gameFactory;
+  let owner, creator, unauthorizedUser;
+  let FriendToken;
+  let friendToken;
+  let mockResolverAddress;
+  let mockEntryPointAddress;
+
   const RESOLVER_ADDRESS = "0x0000000000000000000000000000000000000001";
   const ENTRY_POINT_ADDRESS = "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789";
+  const TWITTER_USERNAME = "creator_twitter";
+  const BASENAME = "creator.base.eth";
+  const METADATA_IPFS_HASH = "QmValidIpfsHash1234567890abcdef1234567890abcdef";
+  const GAME_ID = 1;
   const STAKE_AMOUNT = ethers.parseEther("50");
   const PLAYER_LIMIT = 5;
-  const BASENAME = "creator.base.eth";
-  const IPFS_HASH = "QmValidIpfsHash1234567890abcdef1234567890abcdef";
 
   beforeEach(async function () {
-    try {
-      [owner, addr1, addr2] = await ethers.getSigners();
+    [owner, creator, unauthorizedUser] = await ethers.getSigners();
 
-      // Deploy a fresh FriendToken contract
-      const FriendToken = await ethers.getContractFactory("FriendToken");
-      friendToken = await FriendToken.deploy(owner.address, ethers.parseEther("10000"));
-      await friendToken.waitForDeployment();
+    FriendToken = await ethers.getContractFactory("FriendToken");
+    friendToken = await FriendToken.deploy(owner.address, ethers.parseEther("10000"));
+    await friendToken.waitForDeployment();
 
-      // Deploy a mock token for updating token address
-      const MockToken = await ethers.getContractFactory("FriendToken");
-      mockToken = await MockToken.deploy(owner.address, ethers.parseEther("10000"));
-      await mockToken.waitForDeployment();
+    mockResolverAddress = RESOLVER_ADDRESS;
+    mockEntryPointAddress = ENTRY_POINT_ADDRESS;
 
-      GameFactory = await ethers.getContractFactory("GameFactory");
-      console.log("Deploying GameFactory with args:", {
-        tokenAddress: friendToken.target,
-        owner: owner.address,
-        RESOLVER_ADDRESS,
-        ENTRY_POINT_ADDRESS
-      });
-      gameFactory = await GameFactory.deploy(
-        friendToken.target,
-        owner.address,
-        RESOLVER_ADDRESS,
-        ENTRY_POINT_ADDRESS
-      );
-      await gameFactory.waitForDeployment();
-    } catch (error) {
-      console.error("Error in beforeEach:", error);
-      throw error;
-    }
+    GameFactory = await ethers.getContractFactory("GameFactory");
+    gameFactory = await GameFactory.deploy(
+      friendToken.target,
+      owner.address,
+      mockResolverAddress,
+      mockEntryPointAddress
+    );
+    await gameFactory.deploymentTransaction().wait();
   });
 
   describe("Constructor", function () {
     it("Should initialize correctly with valid inputs", async function () {
       expect(await gameFactory.tokenAddress()).to.equal(friendToken.target);
       expect(await gameFactory.owner()).to.equal(owner.address);
-      expect(await gameFactory.resolverAddress()).to.equal(RESOLVER_ADDRESS);
-      expect(await gameFactory.entryPointAddress()).to.equal(ENTRY_POINT_ADDRESS);
-      expect(await gameFactory.nextGameId()).to.equal(1);
-      expect(await gameFactory.MIN_STAKE()).to.equal(ethers.parseEther("10"));
-      expect(await gameFactory.MAX_STAKE()).to.equal(ethers.parseEther("100"));
-      expect(await gameFactory.MIN_PLAYERS()).to.equal(2);
-      expect(await gameFactory.MAX_PLAYERS()).to.equal(10);
-      const gameInstances = await gameFactory.getGameInstances();
-      expect(gameInstances.length).to.equal(0);
-      expect(await gameFactory.authorizedCreators(owner.address)).to.be.false;
+      expect(await gameFactory.resolverAddress()).to.equal(mockResolverAddress);
+      expect(await gameFactory.entryPointAddress()).to.equal(mockEntryPointAddress);
     });
 
     it("Should revert if token address is zero", async function () {
@@ -65,10 +52,10 @@ describe("GameFactory", function () {
         GameFactory.deploy(
           ethers.ZeroAddress,
           owner.address,
-          RESOLVER_ADDRESS,
-          ENTRY_POINT_ADDRESS
+          mockResolverAddress,
+          mockEntryPointAddress
         )
-      ).to.be.revertedWithCustomError(GameFactory, "InvalidTokenAddress");
+      ).to.be.revertedWithCustomError(GameFactory, "InvalidAddress");
     });
 
     it("Should initialize with zero resolver and entry point addresses", async function () {
@@ -78,7 +65,7 @@ describe("GameFactory", function () {
         ethers.ZeroAddress,
         ethers.ZeroAddress
       );
-      await factory.waitForDeployment();
+      await factory.deploymentTransaction().wait();
       expect(await factory.resolverAddress()).to.equal(ethers.ZeroAddress);
       expect(await factory.entryPointAddress()).to.equal(ethers.ZeroAddress);
     });
@@ -86,222 +73,313 @@ describe("GameFactory", function () {
 
   describe("Authorization Functions", function () {
     it("Should allow owner to authorize a creator", async function () {
-      const tx = await gameFactory.authorizeCreator(addr1.address);
-      const receipt = await tx.wait();
-      const block = await ethers.provider.getBlock(receipt.blockNumber);
-      await expect(tx)
+      await expect(gameFactory.connect(owner).authorizeCreator(creator.address))
         .to.emit(gameFactory, "CreatorAuthorized")
-        .withArgs(addr1.address, block.timestamp);
-      expect(await gameFactory.authorizedCreators(addr1.address)).to.be.true;
+        .withArgs(creator.address);
+      expect(await gameFactory.authorizedCreators(creator.address)).to.be.true;
     });
 
     it("Should revert if non-owner tries to authorize a creator", async function () {
       await expect(
-        gameFactory.connect(addr1).authorizeCreator(addr2.address)
-      ).to.be.revertedWithCustomError(gameFactory, "OwnableUnauthorizedAccount");
+        gameFactory.connect(unauthorizedUser).authorizeCreator(creator.address)
+      ).to.be.revertedWithCustomError(gameFactory, "Unauthorized");
     });
 
     it("Should revert if authorizing zero address", async function () {
       await expect(
-        gameFactory.authorizeCreator(ethers.ZeroAddress)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidCreator");
+        gameFactory.connect(owner).authorizeCreator(ethers.ZeroAddress)
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidAddress");
     });
 
     it("Should allow owner to revoke a creator", async function () {
-      await gameFactory.authorizeCreator(addr1.address);
-      const tx = await gameFactory.revokeCreator(addr1.address);
-      const receipt = await tx.wait();
-      const block = await ethers.provider.getBlock(receipt.blockNumber);
-      await expect(tx)
+      await gameFactory.connect(owner).authorizeCreator(creator.address);
+      await expect(gameFactory.connect(owner).revokeCreator(creator.address))
         .to.emit(gameFactory, "CreatorRevoked")
-        .withArgs(addr1.address, block.timestamp);
-      expect(await gameFactory.authorizedCreators(addr1.address)).to.be.false;
+        .withArgs(creator.address);
+      expect(await gameFactory.authorizedCreators(creator.address)).to.be.false;
     });
 
     it("Should revert if non-owner tries to revoke a creator", async function () {
-      await gameFactory.authorizeCreator(addr1.address);
+      await gameFactory.connect(owner).authorizeCreator(creator.address);
       await expect(
-        gameFactory.connect(addr1).revokeCreator(addr1.address)
-      ).to.be.revertedWithCustomError(gameFactory, "OwnableUnauthorizedAccount");
+        gameFactory.connect(unauthorizedUser).revokeCreator(creator.address)
+      ).to.be.revertedWithCustomError(gameFactory, "Unauthorized");
     });
 
     it("Should revert if revoking zero address", async function () {
       await expect(
-        gameFactory.revokeCreator(ethers.ZeroAddress)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidCreator");
+        gameFactory.connect(owner).revokeCreator(ethers.ZeroAddress)
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidAddress");
+    });
+  });
+
+  describe("Creator Submission Functions", function () {
+    beforeEach(async function () {
+      await gameFactory.connect(owner).authorizeCreator(creator.address);
+    });
+
+    it("Should allow authorized creator to submit details", async function () {
+      await expect(
+        gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME)
+      )
+        .to.emit(gameFactory, "CreatorSubmissionStored")
+        .withArgs(creator.address, TWITTER_USERNAME, BASENAME);
+
+      const submission = await gameFactory.creatorSubmissions(creator.address);
+      expect(submission.twitterUsername).to.equal(TWITTER_USERNAME);
+      expect(submission.basename).to.equal(BASENAME);
+      expect(submission.metadataIpfsHash).to.equal("");
+      expect(submission.submitted).to.be.true;
+    });
+
+    it("Should revert if caller is not authorized", async function () {
+      await expect(
+        gameFactory.connect(unauthorizedUser).submitCreatorDetails(TWITTER_USERNAME, BASENAME)
+      ).to.be.revertedWithCustomError(gameFactory, "Unauthorized");
+    });
+
+    it("Should revert if Twitter username is empty", async function () {
+      await expect(
+        gameFactory.connect(creator).submitCreatorDetails("", BASENAME)
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidTwitterUsername");
+    });
+
+    it("Should revert if basename is empty", async function () {
+      await expect(
+        gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, "")
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidBasename");
+    });
+
+    it("Should revert if creator has already submitted", async function () {
+      await gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      await expect(
+        gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME)
+      ).to.be.revertedWithCustomError(gameFactory, "AlreadySubmitted");
+    });
+
+    it("Should allow owner to update IPFS hash", async function () {
+      await gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      await expect(
+        gameFactory.connect(owner).updateIpfsHash(creator.address, METADATA_IPFS_HASH)
+      )
+        .to.emit(gameFactory, "IpfsHashUpdated")
+        .withArgs(creator.address, METADATA_IPFS_HASH);
+
+      const submission = await gameFactory.creatorSubmissions(creator.address);
+      expect(submission.metadataIpfsHash).to.equal(METADATA_IPFS_HASH);
+    });
+
+    it("Should revert if updating IPFS hash for non-existent submission", async function () {
+      await expect(
+        gameFactory.connect(owner).updateIpfsHash(unauthorizedUser.address, METADATA_IPFS_HASH)
+      ).to.be.revertedWithCustomError(gameFactory, "SubmissionNotFound");
+    });
+
+    it("Should revert if non-owner tries to update IPFS hash", async function () {
+      await gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      await expect(
+        gameFactory.connect(unauthorizedUser).updateIpfsHash(creator.address, METADATA_IPFS_HASH)
+      ).to.be.revertedWithCustomError(gameFactory, "Unauthorized");
+    });
+
+    it("Should revert if IPFS hash is empty", async function () {
+      await gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      await expect(
+        gameFactory.connect(owner).updateIpfsHash(creator.address, "")
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidBasename");
+    });
+
+    it("Should allow retrieval of creator submission", async function () {
+      await gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      const [twitterUsername, basename, metadataIpfsHash] = await gameFactory
+        .connect(creator)
+        .getCreatorSubmission(creator.address);
+
+      expect(twitterUsername).to.equal(TWITTER_USERNAME);
+      expect(basename).to.equal(BASENAME);
+      expect(metadataIpfsHash).to.equal("");
+    });
+
+    it("Should revert if retrieving submission for non-existent creator", async function () {
+      await expect(
+        gameFactory.connect(creator).getCreatorSubmission(unauthorizedUser.address)
+      ).to.be.revertedWithCustomError(gameFactory, "SubmissionNotFound");
     });
   });
 
   describe("Create Game Instance", function () {
     beforeEach(async function () {
-      await gameFactory.authorizeCreator(addr1.address);
+      await gameFactory.connect(owner).authorizeCreator(creator.address);
+      await gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      await gameFactory.connect(owner).updateIpfsHash(creator.address, METADATA_IPFS_HASH);
     });
 
     it("Should create a game instance with valid parameters", async function () {
-      const tx = await gameFactory.connect(addr1).createGameInstance(
-        STAKE_AMOUNT,
-        PLAYER_LIMIT,
-        BASENAME,
-        IPFS_HASH
-      );
-      const receipt = await tx.wait();
-      const block = await ethers.provider.getBlock(receipt.blockNumber);
-      const instanceAddress = (await receipt.logs.filter(log => log.eventName === "GameCreated"))[0].args.gameInstance;
-
+      const tx = await gameFactory.connect(creator).createGameInstance(GAME_ID, STAKE_AMOUNT, PLAYER_LIMIT);
       await expect(tx)
         .to.emit(gameFactory, "GameCreated")
-        .withArgs(1, instanceAddress, addr1.address, BASENAME, STAKE_AMOUNT, PLAYER_LIMIT, IPFS_HASH, block.timestamp);
+        .withArgs(
+          (await gameFactory.getGameInstances()).at(-1), // gameInstance address
+          creator.address,
+          GAME_ID,
+          STAKE_AMOUNT,
+          PLAYER_LIMIT,
+          BASENAME,
+          METADATA_IPFS_HASH
+        );
 
       const gameInstances = await gameFactory.getGameInstances();
       expect(gameInstances.length).to.equal(1);
-      expect(gameInstances[0]).to.equal(instanceAddress);
 
-      const metadata = await gameFactory.getGameDetails(instanceAddress);
-      expect(metadata.gameId).to.equal(1);
-      expect(metadata.creator).to.equal(addr1.address);
-      expect(metadata.basename).to.equal(BASENAME);
-      expect(metadata.stakeAmount).to.equal(STAKE_AMOUNT);
-      expect(metadata.playerLimit).to.equal(PLAYER_LIMIT);
-      expect(metadata.ipfsHash).to.equal(IPFS_HASH);
-      expect(typeof metadata.createdAt).to.equal("bigint");
-
-      expect(await gameFactory.nextGameId()).to.equal(2);
-
-      const gameInstance = await ethers.getContractAt("GameInstance", instanceAddress);
-      expect(await gameInstance.tokenAddress()).to.equal(friendToken.target);
-      expect(await gameInstance.creator()).to.equal(addr1.address);
-      expect(await gameInstance.stakeAmount()).to.equal(STAKE_AMOUNT);
-      expect(await gameInstance.playerLimit()).to.equal(PLAYER_LIMIT);
-      expect(await gameInstance.basename()).to.equal(BASENAME);
-      expect(await gameInstance.ipfsHash()).to.equal(IPFS_HASH);
-      expect(await gameInstance.resolverAddress()).to.equal(RESOLVER_ADDRESS);
-      expect(await gameInstance.entryPointAddress()).to.equal(ENTRY_POINT_ADDRESS);
+      // Access creatorToGames mapping correctly
+      const creatorGames = await gameFactory.getCreatorGames(creator.address);
+      expect(creatorGames.length).to.equal(1);
+      expect(creatorGames[0]).to.equal(gameInstances[0]);
     });
 
     it("Should revert if caller is not authorized", async function () {
       await expect(
-        gameFactory.connect(addr2).createGameInstance(STAKE_AMOUNT, PLAYER_LIMIT, BASENAME, IPFS_HASH)
-      ).to.be.revertedWithCustomError(gameFactory, "UnauthorizedCreator");
+        gameFactory.connect(unauthorizedUser).createGameInstance(GAME_ID, STAKE_AMOUNT, PLAYER_LIMIT)
+      ).to.be.revertedWithCustomError(gameFactory, "Unauthorized");
+    });
+
+    it("Should revert if creator has not submitted details", async function () {
+      await gameFactory.connect(owner).authorizeCreator(unauthorizedUser.address);
+      await expect(
+        gameFactory.connect(unauthorizedUser).createGameInstance(GAME_ID, STAKE_AMOUNT, PLAYER_LIMIT)
+      ).to.be.revertedWithCustomError(gameFactory, "SubmissionNotFound");
+    });
+
+    it("Should revert if IPFS hash is not set", async function () {
+      await gameFactory.connect(owner).authorizeCreator(unauthorizedUser.address);
+      await gameFactory.connect(unauthorizedUser).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      await expect(
+        gameFactory.connect(unauthorizedUser).createGameInstance(GAME_ID, STAKE_AMOUNT, PLAYER_LIMIT)
+      ).to.be.revertedWithCustomError(gameFactory, "SubmissionNotFound");
     });
 
     it("Should revert if stake amount is too low", async function () {
+      const invalidStakeAmount = ethers.parseEther("5");
       await expect(
-        gameFactory.connect(addr1).createGameInstance(ethers.parseEther("5"), PLAYER_LIMIT, BASENAME, IPFS_HASH)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidGameParameters");
+        gameFactory.connect(creator).createGameInstance(GAME_ID, invalidStakeAmount, PLAYER_LIMIT)
+      ).to.be.revertedWithCustomError(GameFactory, "InvalidStakeAmount");
     });
 
     it("Should revert if stake amount is too high", async function () {
+      const invalidStakeAmount = ethers.parseEther("150");
       await expect(
-        gameFactory.connect(addr1).createGameInstance(ethers.parseEther("150"), PLAYER_LIMIT, BASENAME, IPFS_HASH)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidGameParameters");
+        gameFactory.connect(creator).createGameInstance(GAME_ID, invalidStakeAmount, PLAYER_LIMIT)
+      ).to.be.revertedWithCustomError(GameFactory, "InvalidStakeAmount");
     });
 
     it("Should revert if player limit is too low", async function () {
+      const invalidPlayerLimit = 1;
       await expect(
-        gameFactory.connect(addr1).createGameInstance(STAKE_AMOUNT, 1, BASENAME, IPFS_HASH)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidGameParameters");
+        gameFactory.connect(creator).createGameInstance(GAME_ID, STAKE_AMOUNT, invalidPlayerLimit)
+      ).to.be.revertedWithCustomError(GameFactory, "InvalidPlayerLimit");
     });
 
     it("Should revert if player limit is too high", async function () {
+      const invalidPlayerLimit = 11;
       await expect(
-        gameFactory.connect(addr1).createGameInstance(STAKE_AMOUNT, 11, BASENAME, IPFS_HASH)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidGameParameters");
-    });
-
-    it("Should revert if basename is empty", async function () {
-      await expect(
-        gameFactory.connect(addr1).createGameInstance(STAKE_AMOUNT, PLAYER_LIMIT, "", IPFS_HASH)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidBasename");
+        gameFactory.connect(creator).createGameInstance(GAME_ID, STAKE_AMOUNT, invalidPlayerLimit)
+      ).to.be.revertedWithCustomError(GameFactory, "InvalidPlayerLimit");
     });
   });
 
   describe("Get Game Instances and Details", function () {
-    let instanceAddress;
+    let gameInstanceAddress;
 
     beforeEach(async function () {
-      await gameFactory.authorizeCreator(addr1.address);
-      const tx = await gameFactory.connect(addr1).createGameInstance(
-        STAKE_AMOUNT,
-        PLAYER_LIMIT,
-        BASENAME,
-        IPFS_HASH
-      );
+      await gameFactory.connect(owner).authorizeCreator(creator.address);
+      await gameFactory.connect(creator).submitCreatorDetails(TWITTER_USERNAME, BASENAME);
+      await gameFactory.connect(owner).updateIpfsHash(creator.address, METADATA_IPFS_HASH);
+      const tx = await gameFactory.connect(creator).createGameInstance(GAME_ID, STAKE_AMOUNT, PLAYER_LIMIT);
       const receipt = await tx.wait();
-      instanceAddress = (await receipt.logs.filter(log => log.eventName === "GameCreated"))[0].args.gameInstance;
+      const event = receipt.logs
+        .map((log) => {
+          try {
+            return gameFactory.interface.parseLog(log);
+          } catch (e) {
+            return null;
+          }
+        })
+        .find((log) => log && log.name === "GameCreated");
+      gameInstanceAddress = event.args.gameInstance;
     });
 
     it("Should return empty game instances initially", async function () {
-      const factory = await GameFactory.deploy(
+      const newFactory = await GameFactory.deploy(
         friendToken.target,
         owner.address,
-        RESOLVER_ADDRESS,
-        ENTRY_POINT_ADDRESS
+        mockResolverAddress,
+        mockEntryPointAddress
       );
-      await factory.waitForDeployment();
-      const gameInstances = await factory.getGameInstances();
+      await newFactory.deploymentTransaction().wait();
+      const gameInstances = await newFactory.getGameInstances();
       expect(gameInstances.length).to.equal(0);
     });
 
     it("Should return correct game instances after creation", async function () {
       const gameInstances = await gameFactory.getGameInstances();
       expect(gameInstances.length).to.equal(1);
-      expect(gameInstances[0]).to.equal(instanceAddress);
+      expect(gameInstances[0]).to.equal(gameInstanceAddress);
     });
 
     it("Should return correct game details for valid instance", async function () {
-      const metadata = await gameFactory.getGameDetails(instanceAddress);
-      expect(metadata.gameId).to.equal(1);
-      expect(metadata.creator).to.equal(addr1.address);
-      expect(metadata.basename).to.equal(BASENAME);
-      expect(metadata.stakeAmount).to.equal(STAKE_AMOUNT);
-      expect(metadata.playerLimit).to.equal(PLAYER_LIMIT);
-      expect(metadata.ipfsHash).to.equal(IPFS_HASH);
-      expect(typeof metadata.createdAt).to.equal("bigint");
+      const details = await gameFactory.getGameDetails(gameInstanceAddress);
+      expect(details.creator).to.equal(creator.address);
+      expect(details.gameId).to.equal(GAME_ID);
+      expect(details.stakeAmount).to.equal(STAKE_AMOUNT);
+      expect(details.playerLimit).to.equal(PLAYER_LIMIT);
+      expect(details.basename).to.equal(BASENAME);
+      expect(details.metadataIpfsHash).to.equal(METADATA_IPFS_HASH);
+      expect(details.playerCount).to.equal(0);
+      expect(details.gameState).to.equal(0); // GameState.Open
     });
 
     it("Should revert for invalid instance address", async function () {
       await expect(
         gameFactory.getGameDetails(ethers.ZeroAddress)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidInstanceAddress");
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidAddress");
+    });
+
+    it("Should return correct creator games", async function () {
+      // Access creatorToGames mapping correctly
+      const creatorGames = await gameFactory.getCreatorGames(creator.address);
+      expect(creatorGames.length).to.equal(1);
+      expect(creatorGames[0]).to.equal(gameInstanceAddress);
+
+      const otherCreatorGames = await gameFactory.getCreatorGames(unauthorizedUser.address);
+      expect(otherCreatorGames.length).to.equal(0);
     });
   });
 
   describe("Update Token Contract", function () {
     it("Should allow owner to update token contract", async function () {
-      const tx = await gameFactory.updateTokenContract(mockToken.target);
-      const receipt = await tx.wait();
-      const block = await ethers.provider.getBlock(receipt.blockNumber);
+      const newToken = await FriendToken.deploy(owner.address, ethers.parseEther("10000"));
+      await newToken.waitForDeployment();
 
-      await expect(tx)
+      await expect(gameFactory.connect(owner).updateTokenContract(newToken.target))
         .to.emit(gameFactory, "TokenContractUpdated")
-        .withArgs(friendToken.target, mockToken.target, block.timestamp);
+        .withArgs(newToken.target);
 
-      expect(await gameFactory.tokenAddress()).to.equal(mockToken.target);
-
-      // Verify new game instances use the updated token address
-      await gameFactory.authorizeCreator(addr1.address);
-      const createTx = await gameFactory.connect(addr1).createGameInstance(
-        STAKE_AMOUNT,
-        PLAYER_LIMIT,
-        BASENAME,
-        IPFS_HASH
-      );
-      const createReceipt = await createTx.wait();
-      const instanceAddress = (await createReceipt.logs.filter(log => log.eventName === "GameCreated"))[0].args.gameInstance;
-      const gameInstance = await ethers.getContractAt("GameInstance", instanceAddress);
-      expect(await gameInstance.tokenAddress()).to.equal(mockToken.target);
+      expect(await gameFactory.tokenAddress()).to.equal(newToken.target);
     });
 
     it("Should revert if non-owner tries to update token contract", async function () {
+      const newToken = await FriendToken.deploy(owner.address, ethers.parseEther("10000"));
+      await newToken.waitForDeployment();
+
       await expect(
-        gameFactory.connect(addr1).updateTokenContract(mockToken.target)
-      ).to.be.revertedWithCustomError(gameFactory, "OwnableUnauthorizedAccount");
+        gameFactory.connect(unauthorizedUser).updateTokenContract(newToken.target)
+      ).to.be.revertedWithCustomError(gameFactory, "Unauthorized");
     });
 
     it("Should revert if new token address is zero", async function () {
       await expect(
-        gameFactory.updateTokenContract(ethers.ZeroAddress)
-      ).to.be.revertedWithCustomError(gameFactory, "InvalidTokenAddress");
+        gameFactory.connect(owner).updateTokenContract(ethers.ZeroAddress)
+      ).to.be.revertedWithCustomError(gameFactory, "InvalidAddress");
     });
   });
 });

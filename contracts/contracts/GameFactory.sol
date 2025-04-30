@@ -1,184 +1,212 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "./GameInstance.sol";
 
-contract GameFactory is Ownable {
-    // State variables
-    address public tokenAddress;
-    address[] public gameInstances;
-    uint256 public nextGameId = 1;
+// GameFactory.sol manages the creation of trivia game instances for FriendChain MVP
+contract GameFactory {
+    // --- State Variables ---
 
-    mapping(address => GameMetadata) public gameDetails;
-    mapping(address => bool) public authorizedCreators;
+    address public tokenAddress; // Address of FriendToken.sol (ERC-20)
+    address public owner; // Owner of the contract (deployer)
+    address public resolverAddress; // Address of the Base ENS resolver
+    address public entryPointAddress; // Address of the ERC-4337 EntryPoint contract
 
-    // Stake and player limits
-    uint256 public constant MIN_STAKE = 10 * 10**18; // 10 FRND
-    uint256 public constant MAX_STAKE = 100 * 10**18; // 100 FRND
-    uint256 public constant MIN_PLAYERS = 2;
-    uint256 public constant MAX_PLAYERS = 10;
+    mapping(address => bool) public authorizedCreators; // Tracks authorized creators
+    mapping(address => CreatorSubmission) public creatorSubmissions; // Stores creator submissions
+    address[] public gameInstances; // Array of all game instances
+    mapping(address => address[]) public creatorToGames; // Maps creators to their game instances
 
-    // Optional Base Names and ERC-4337 addresses
-    address public resolverAddress;
-    address public entryPointAddress;
+    // --- Structs ---
 
-    // Game metadata struct
-    struct GameMetadata {
-        uint256 gameId;
-        address creator;
-        string basename;
-        uint256 stakeAmount;
-        uint256 playerLimit;
-        string ipfsHash;
-        uint256 createdAt;
+    struct CreatorSubmission {
+        string twitterUsername; // Creator's Twitter username
+        string basename; // Creator's Basename (e.g., "bob.base")
+        string metadataIpfsHash; // IPFS hash for AI-generated content (renamed from ipfsHash)
+        bool submitted; // Tracks submission status
     }
 
-    // Custom errors
-    error InvalidTokenAddress();
-    error InvalidCreator();
-    error UnauthorizedCreator();
-    error InvalidGameParameters();
-    error InvalidBasename();
-    error DeploymentFailed();
-    error InvalidInstanceAddress();
+    struct GameDetails {
+        address creator; // Address of the game creator
+        uint256 gameId; // Unique identifier for the game
+        uint256 stakeAmount; // Amount of FRND tokens each player stakes
+        uint256 playerLimit; // Maximum number of players
+        string basename; // Creator's Basename
+        string metadataIpfsHash; // IPFS hash for AI-generated content
+        uint256 createdAt; // Timestamp of game creation
+        uint256 playerCount; // Current number of players
+        GameInstance.GameState gameState; // Current state of the game
+    }
 
-    // Events
-    event CreatorAuthorized(address indexed creator, uint256 timestamp);
-    event CreatorRevoked(address indexed creator, uint256 timestamp);
+    // --- Events ---
+
+    event CreatorAuthorized(address indexed creator);
+    event CreatorRevoked(address indexed creator);
+    event CreatorSubmissionStored(address indexed creator, string twitterUsername, string basename);
+    event IpfsHashUpdated(address indexed creator, string metadataIpfsHash);
     event GameCreated(
-        uint256 indexed gameId,
         address indexed gameInstance,
         address indexed creator,
-        string basename,
+        uint256 gameId,
         uint256 stakeAmount,
         uint256 playerLimit,
-        string ipfsHash,
-        uint256 timestamp
+        string basename,
+        string metadataIpfsHash
     );
-    event TokenContractUpdated(address indexed oldToken, address indexed newToken, uint256 timestamp);
+    event TokenContractUpdated(address indexed newTokenAddress);
 
-    // Constructor
+    // --- Errors ---
+
+    error Unauthorized();
+    error InvalidAddress();
+    error InvalidTwitterUsername();
+    error InvalidBasename();
+    error AlreadySubmitted();
+    error SubmissionNotFound();
+    error InvalidStakeAmount();
+    error InvalidPlayerLimit();
+
+    // --- Constructor ---
+
     constructor(
         address _tokenAddress,
-        address _initialOwner,
+        address _owner,
         address _resolverAddress,
         address _entryPointAddress
-    ) Ownable(_initialOwner) {
-        if (_tokenAddress == address(0)) {
-            revert InvalidTokenAddress();
-        }
+    ) {
+        if (_tokenAddress == address(0) || _owner == address(0)) revert InvalidAddress();
+
         tokenAddress = _tokenAddress;
+        owner = _owner;
         resolverAddress = _resolverAddress;
         entryPointAddress = _entryPointAddress;
     }
 
-    // Get all game instances
-    function getGameInstances() public view returns (address[] memory) {
-        return gameInstances;
-    }
+    // --- Creator Authorization Functions ---
 
-    // Get game details for an instance
-    function getGameDetails(address instanceAddress) public view returns (GameMetadata memory) {
-        if (gameDetails[instanceAddress].gameId == 0) {
-            revert InvalidInstanceAddress();
-        }
-        return gameDetails[instanceAddress];
-    }
+    function authorizeCreator(address creator) external {
+        if (msg.sender != owner) revert Unauthorized();
+        if (creator == address(0)) revert InvalidAddress();
 
-    // Authorize a creator
-    function authorizeCreator(address creator) external onlyOwner {
-        if (creator == address(0)) {
-            revert InvalidCreator();
-        }
         authorizedCreators[creator] = true;
-        emit CreatorAuthorized(creator, block.timestamp);
+        emit CreatorAuthorized(creator);
     }
 
-    // Revoke a creator's authorization
-    function revokeCreator(address creator) external onlyOwner {
-        if (creator == address(0)) {
-            revert InvalidCreator();
-        }
+    function revokeCreator(address creator) external {
+        if (msg.sender != owner) revert Unauthorized();
+        if (creator == address(0)) revert InvalidAddress();
+
         authorizedCreators[creator] = false;
-        emit CreatorRevoked(creator, block.timestamp);
+        emit CreatorRevoked(creator);
     }
 
-    // Create a new game instance
-    function createGameInstance(
-        uint256 stakeAmount,
-        uint256 playerLimit,
-        string memory basename,
-        string memory ipfsHash
-    ) external returns (address) {
-        if (!authorizedCreators[msg.sender]) {
-            revert UnauthorizedCreator();
-        }
-        if (stakeAmount < MIN_STAKE || stakeAmount > MAX_STAKE) {
-            revert InvalidGameParameters();
-        }
-        if (playerLimit < MIN_PLAYERS || playerLimit > MAX_PLAYERS) {
-            revert InvalidGameParameters();
-        }
-        if (bytes(basename).length == 0) {
-            revert InvalidBasename();
-        }
+    // --- Creator Submission Functions ---
 
-        uint256 gameId = nextGameId;
-        nextGameId++;
+    function submitCreatorDetails(string memory twitterUsername, string memory basename) external {
+        if (!authorizedCreators[msg.sender]) revert Unauthorized();
+        if (creatorSubmissions[msg.sender].submitted) revert AlreadySubmitted();
+        if (bytes(twitterUsername).length == 0) revert InvalidTwitterUsername();
+        if (bytes(basename).length == 0) revert InvalidBasename();
 
-        GameInstance gameInstance;
-        try new GameInstance(
+        creatorSubmissions[msg.sender] = CreatorSubmission({
+            twitterUsername: twitterUsername,
+            basename: basename,
+            metadataIpfsHash: "",
+            submitted: true
+        });
+
+        emit CreatorSubmissionStored(msg.sender, twitterUsername, basename);
+    }
+
+    function updateIpfsHash(address creator, string memory metadataIpfsHash) external {
+        if (msg.sender != owner) revert Unauthorized();
+        if (!creatorSubmissions[creator].submitted) revert SubmissionNotFound();
+        if (bytes(metadataIpfsHash).length == 0) revert InvalidBasename();
+
+        creatorSubmissions[creator].metadataIpfsHash = metadataIpfsHash;
+        emit IpfsHashUpdated(creator, metadataIpfsHash);
+    }
+
+    function getCreatorSubmission(
+        address creator
+    ) external view returns (string memory twitterUsername, string memory basename, string memory metadataIpfsHash) {
+        CreatorSubmission memory submission = creatorSubmissions[creator];
+        if (!submission.submitted) revert SubmissionNotFound();
+        return (submission.twitterUsername, submission.basename, submission.metadataIpfsHash);
+    }
+
+    // --- Game Instance Management ---
+
+    function createGameInstance(uint256 gameId, uint256 stakeAmount, uint256 playerLimit) external {
+        if (!authorizedCreators[msg.sender]) revert Unauthorized();
+
+        CreatorSubmission memory submission = creatorSubmissions[msg.sender];
+        if (!submission.submitted || bytes(submission.metadataIpfsHash).length == 0) revert SubmissionNotFound();
+
+        // Validate player limit (2-10)
+        if (playerLimit < 2 || playerLimit > 10) revert InvalidPlayerLimit();
+
+        // Deploy new GameInstance
+        GameInstance gameInstance = new GameInstance(
             tokenAddress,
             msg.sender,
             gameId,
             stakeAmount,
             playerLimit,
-            basename,
-            ipfsHash,
+            submission.basename,
+            submission.metadataIpfsHash,
             resolverAddress,
             entryPointAddress
-        ) returns (GameInstance instance) {
-            gameInstance = instance;
-        } catch {
-            revert DeploymentFailed();
-        }
-
-        address instanceAddress = address(gameInstance);
-        gameInstances.push(instanceAddress);
-
-        gameDetails[instanceAddress] = GameMetadata({
-            gameId: gameId,
-            creator: msg.sender,
-            basename: basename,
-            stakeAmount: stakeAmount,
-            playerLimit: playerLimit,
-            ipfsHash: ipfsHash,
-            createdAt: block.timestamp
-        });
-
-        emit GameCreated(
-            gameId,
-            instanceAddress,
-            msg.sender,
-            basename,
-            stakeAmount,
-            playerLimit,
-            ipfsHash,
-            block.timestamp
         );
 
-        return instanceAddress;
+        address gameInstanceAddress = address(gameInstance);
+        gameInstances.push(gameInstanceAddress);
+        creatorToGames[msg.sender].push(gameInstanceAddress);
+
+        emit GameCreated(
+            gameInstanceAddress,
+            msg.sender,
+            gameId,
+            stakeAmount,
+            playerLimit,
+            submission.basename,
+            submission.metadataIpfsHash
+        );
     }
 
-    // Update the token contract address
-    function updateTokenContract(address newTokenAddress) external onlyOwner {
-        if (newTokenAddress == address(0)) {
-            revert InvalidTokenAddress();
-        }
-        address oldTokenAddress = tokenAddress;
+    function getGameInstances() external view returns (address[] memory) {
+        return gameInstances;
+    }
+
+    function getCreatorGames(address creator) external view returns (address[] memory) {
+        return creatorToGames[creator];
+    }
+
+    function getGameDetails(address gameInstanceAddress) external view returns (GameDetails memory) {
+        if (gameInstanceAddress == address(0)) revert InvalidAddress();
+
+        GameInstance game = GameInstance(gameInstanceAddress);
+        return
+            GameDetails({
+                creator: game.creator(),
+                gameId: game.gameId(),
+                stakeAmount: game.stakeAmount(),
+                playerLimit: game.playerLimit(),
+                basename: game.basename(),
+                metadataIpfsHash: game.metadataIpfsHash(),
+                createdAt: game.createdAt(),
+                playerCount: game.playerCount(),
+                gameState: game.gameState()
+            });
+    }
+
+    // --- Token Contract Management ---
+
+    function updateTokenContract(address newTokenAddress) external {
+        if (msg.sender != owner) revert Unauthorized();
+        if (newTokenAddress == address(0)) revert InvalidAddress();
+
         tokenAddress = newTokenAddress;
-        emit TokenContractUpdated(oldTokenAddress, newTokenAddress, block.timestamp);
+        emit TokenContractUpdated(newTokenAddress);
     }
 }
