@@ -4,21 +4,18 @@ async function main() {
   const [deployer] = await ethers.getSigners();
   console.log("Deploying contracts with account:", deployer.address);
 
-  // Deploy FriendToken
-  const FriendToken = await ethers.getContractFactory("FriendToken");
-  const maxSupply = ethers.parseEther("10000"); // 10,000 FRND
-  const friendToken = await FriendToken.deploy(deployer.address, maxSupply);
-  await friendToken.waitForDeployment();
-  console.log("FriendToken deployed to:", friendToken.target);
+  // Deploy FriendToken (already deployed, reuse address)
+  const friendTokenAddress = "0x4e83e8658B27BEF023eE431B1A2D97e6B3d014AD";
+  console.log("Using existing FriendToken at:", friendTokenAddress);
 
-  // Mock addresses for resolver and entry point (replace with actual Base Sepolia addresses if available)
+  // Correct EntryPoint address for Base Sepolia
   const RESOLVER_ADDRESS = "0x0000000000000000000000000000000000000001";
-  const ENTRY_POINT_ADDRESS = "0x0000000000000000000000000000000000000002";
+  const ENTRY_POINT_ADDRESS = "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789";
 
   // Deploy GameFactory
   const GameFactory = await ethers.getContractFactory("GameFactory");
   const gameFactory = await GameFactory.deploy(
-    friendToken.target,
+    friendTokenAddress,
     deployer.address,
     RESOLVER_ADDRESS,
     ENTRY_POINT_ADDRESS
@@ -32,11 +29,11 @@ async function main() {
 
   // Deploy GameInstance
   const tx = await gameFactory.createGameInstance(
-    ethers.parseEther("50"), // stakeAmount
-    5, // playerLimit
-    "creator.base.eth", // basename
-    "QmValidIpfsHash1234567890abcdef1234567890abcdef", // ipfsHash
-    { gasLimit: 1000000 } // Override gas limit
+    ethers.parseEther("50"),
+    5,
+    "creator.base.eth",
+    "QmValidIpfsHash1234567890abcdef1234567890abcdef",
+    { gasLimit: 1000000 }
   );
   const receipt = await tx.wait();
   const instanceAddress = (await receipt.logs.filter(log => log.eventName === "GameCreated"))[0].args.gameInstance;
