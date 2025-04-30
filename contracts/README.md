@@ -44,3 +44,12 @@ for verification on the block explorer. Waiting for verification result...
 Successfully verified contract GameInstance on the block explorer.
 https://sepolia.basescan.org/address/0xf8c6449B6Bd895E8d08fb2a23415E1aBcdC462bb#code
 
+
+Verify the New GameInstance
+npx hardhat verify 0x05251A2838f99cdBf4BB3710298090bD79198b83 0x4e83e8658B27BEF023eE431B1A2D97e6B3d014AD 0x671b2d2b41AF93A1DBeb9E72e68E3Ce1C018B845 50000000000000000000 5 "creator.base.eth" "QmValidIpfsHash1234567890abcdef1234567890abcdef" 0x0000000000000000000000000000000000000001 0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789 --network baseSepolia
+
+
+## Deployment Details
+- **GameFactory.sol Address**: `0xA5bBc7A0C122708463319e7802Ba9E6739FE048F`
+- **Network**: Base Sepolia
+- **Verification URL**: https://sepolia.basescan.org/address/0xA5bBc7A0C122708463319e7802Ba9E6739FE048F#code
