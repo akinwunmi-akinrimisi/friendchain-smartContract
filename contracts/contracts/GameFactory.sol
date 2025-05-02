@@ -11,6 +11,7 @@ contract GameFactory {
     address public owner; // Owner of the contract (deployer)
     address public resolverAddress; // Address of the Base ENS resolver
     address public entryPointAddress; // Address of the ERC-4337 EntryPoint contract
+    address public nftBadgeAddress; // Address of the NFTBadge contract (temporary addition)
 
     mapping(address => bool) public authorizedCreators; // Tracks authorized creators
     mapping(address => CreatorSubmission) public creatorSubmissions; // Stores creator submissions
@@ -72,14 +73,16 @@ contract GameFactory {
         address _tokenAddress,
         address _owner,
         address _resolverAddress,
-        address _entryPointAddress
+        address _entryPointAddress,
+        address _nftBadgeAddress // Temporary addition for testing
     ) {
-        if (_tokenAddress == address(0) || _owner == address(0)) revert InvalidAddress();
+        if (_tokenAddress == address(0) || _owner == address(0) || _nftBadgeAddress == address(0)) revert InvalidAddress();
 
         tokenAddress = _tokenAddress;
         owner = _owner;
         resolverAddress = _resolverAddress;
         entryPointAddress = _entryPointAddress;
+        nftBadgeAddress = _nftBadgeAddress;
     }
 
     // --- Creator Authorization Functions ---
@@ -156,7 +159,8 @@ contract GameFactory {
             submission.basename,
             submission.metadataIpfsHash,
             resolverAddress,
-            entryPointAddress
+            entryPointAddress,
+            nftBadgeAddress // Pass the NFTBadge address
         );
 
         address gameInstanceAddress = address(gameInstance);

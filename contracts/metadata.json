@@ -1,0 +1,17 @@
+{
+    "name": "FriendChain Badge #0",
+    "description": "A badge awarded to winners of the FriendChain game.",
+    "image": "ipfs://bafybeicptt4hdkw6pqm43rujdex7gknvyp4wfnk5iqoilsgxpqp2aspgk4",
+    "attributes": [
+      {
+        "trait_type": "Level",
+        "value": "1"
+      },
+      {
+        "trait_type": "Rarity",
+        "value": "Common"
+      }
+    ]
+  }
+
+  

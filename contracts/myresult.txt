@@ -1,0 +1,1695 @@
+Deployer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Player 1: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+Player 2: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+Player 3: 0x90F79bf6EB2c4f870365E785982E1f101E93b906
+Player 4: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65
+Player 5: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+Player 6: 0x976EA74026E726554dB657fA54763abd0C3a0aa9
+FriendToken deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+Deployer balance after deployment: 1000.0
+Minted 200 tokens for Player 1
+Minted 200 tokens for Player 2
+Minted 200 tokens for Player 3
+Minted 200 tokens for Player 4
+Minted 200 tokens for Player 5
+Minted 200 tokens for Player 6
+Player 1 balance: 200.0
+Player 2 balance: 200.0
+Player 3 balance: 200.0
+Player 4 balance: 200.0
+Player 5 balance: 200.0
+Player 6 balance: 200.0
+NFTBadge deployed to: 0xa513E6E4b8f2a923D98304ec87F64353C4D5C853
+GameInstance deployed to: 0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6
+Granted MINTER_ROLE to GameInstance: 0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6
+Player 1 approved GameInstance to spend tokens
+Player 2 approved GameInstance to spend tokens
+Player 3 approved GameInstance to spend tokens
+Player 4 approved GameInstance to spend tokens
+Player 5 approved GameInstance to spend tokens
+Player 6 approved GameInstance to spend tokens
+Player 1 allowance for GameInstance: 100.0
+Player 2 allowance for GameInstance: 100.0
+Player 3 allowance for GameInstance: 100.0
+Player 4 allowance for GameInstance: 100.0
+Player 5 allowance for GameInstance: 100.0
+Player 6 allowance for GameInstance: 100.0
+
+Test 1: Players joining the game...
+Player 1 joined successfully
+Player 1 basename: player.base.eth
+Player 2 joined successfully
+Player 2 basename: player2.base.eth
+Player 3 joined successfully
+Player 3 basename: player3.base.eth
+Player 4 joined successfully
+Player 4 basename: player4.base.eth
+Player 5 joined successfully
+Player 5 basename: player5.base.eth
+Player 6 joined successfully
+Player 6 basename: player6.base.eth
+Player count: 6
+
+Test 2: Setting questions and starting the game...
+Questions set transaction mined
+QuestionsStored event emitted with gameId: 1 and IPFS hash: QmQuestionsIpfsHash1234567890abcdef1234567890
+Questions IPFS hash: QmQuestionsIpfsHash1234567890abcdef1234567890
+Game state before start: 0
+Player count before start: 6
+Creator address: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Game started successfully
+Game state after start: 1
+
+Test 3: Players submitting answers...
+Player 1 submitting answer 1 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 0
+Answer correct: true
+Player progress after increment: 2
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 2
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 1 correctly
+Player 1 submitting answer 2 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 2
+Answer correct: true
+Player progress after increment: 3
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 3
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 2 correctly
+Player 1 submitting answer 3 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 3
+Answer correct: true
+Player progress after increment: 4
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 4
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 3 correctly
+Player 1 submitting answer 4 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 4
+Answer correct: true
+Player progress after increment: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 5
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 4 correctly
+Player 1 submitting answer 5 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 5
+Answer correct: true
+Player progress after increment: 6
+Player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8, Stage: 0, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 6
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 5 correctly
+Player 1 submitting answer 6 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 6
+Answer correct: true
+Player progress after increment: 7
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 7
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 6 correctly
+Player 1 submitting answer 7 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 7
+Answer correct: true
+Player progress after increment: 8
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 8
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 7 correctly
+Player 1 submitting answer 8 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 8
+Answer correct: true
+Player progress after increment: 9
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 9
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 8 correctly
+Player 1 submitting answer 9 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 9
+Answer correct: true
+Player progress after increment: 10
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 10
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 9 correctly
+Player 1 submitting answer 10 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 10
+Answer correct: true
+Player progress after increment: 11
+Player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8, Stage: 1, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 11
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 10 correctly
+Player 1 submitting answer 11 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 11
+Answer correct: true
+Player progress after increment: 12
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 12
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 11 correctly
+Player 1 submitting answer 12 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 12
+Answer correct: true
+Player progress after increment: 13
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 13
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 12 correctly
+Player 1 submitting answer 13 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 13
+Answer correct: true
+Player progress after increment: 14
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 14
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+All finished: false
+Player 1 answered question 13 correctly
+Player 1 submitting answer 14 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 14
+Answer correct: true
+Player progress after increment: 15
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 15
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 0
+Player not finished: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+All finished: false
+Player 1 answered question 14 correctly
+Player 1 submitting answer 15 of 15...
+Submitting answer for player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Current question: 15
+Answer correct: true
+Player progress after increment: 16
+Player: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8, Stage: 2, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 0
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 1
+Player not finished: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+All finished: false
+Player 1 answered question 15 correctly
+Player 1 score: 15
+Player 2 submitting answer 1 of 5...
+Submitting answer for player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Current question: 0
+Answer correct: true
+Player progress after increment: 2
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 2
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 1
+Player not finished: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+All finished: false
+Player 2 answered question 1
+Player 2 submitting answer 2 of 5...
+Submitting answer for player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Current question: 2
+Answer correct: true
+Player progress after increment: 3
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 3
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 1
+Player not finished: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+All finished: false
+Player 2 answered question 2
+Player 2 submitting answer 3 of 5...
+Submitting answer for player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Current question: 3
+Answer correct: false
+Player progress after increment: 4
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 4
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 1
+Player not finished: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+All finished: false
+Player 2 answered question 3
+Player 2 submitting answer 4 of 5...
+Submitting answer for player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Current question: 4
+Answer correct: true
+Player progress after increment: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Player progress: 5
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 6
+Winner count: 1
+Player not finished: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+All finished: false
+Player 2 answered question 4
+Player 2 submitting answer 5 of 5...
+Submitting answer for player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Current question: 5
+Answer correct: true
+Player progress after increment: 6
+Player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc, Stage: 0, Score: 4
+Eliminating player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc, Reason: StageFailed
+Player eliminated status: true
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 0
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 2 answered question 5
+Player 2 eliminated: true
+Player 3 submitting answer 1 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 0
+Answer correct: true
+Player progress after increment: 2
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 2
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 1
+Player 3 submitting answer 2 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 2
+Answer correct: true
+Player progress after increment: 3
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 3
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 2
+Player 3 submitting answer 3 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 3
+Answer correct: true
+Player progress after increment: 4
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 4
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 3
+Player 3 submitting answer 4 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 4
+Answer correct: true
+Player progress after increment: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 5
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 4
+Player 3 submitting answer 5 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 5
+Answer correct: true
+Player progress after increment: 6
+Player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906, Stage: 0, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 6
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 5
+Player 3 submitting answer 6 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 6
+Answer correct: true
+Player progress after increment: 7
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 7
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 6
+Player 3 submitting answer 7 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 7
+Answer correct: false
+Player progress after increment: 8
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 8
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 7
+Player 3 submitting answer 8 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 8
+Answer correct: true
+Player progress after increment: 9
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 9
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 8
+Player 3 submitting answer 9 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 9
+Answer correct: true
+Player progress after increment: 10
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Player progress: 10
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 5
+Winner count: 1
+Player not finished: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+All finished: false
+Player 3 answered question 9
+Player 3 submitting answer 10 of 10...
+Submitting answer for player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Current question: 10
+Answer correct: true
+Player progress after increment: 11
+Player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906, Stage: 1, Score: 4
+Eliminating player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906, Reason: StageFailed
+Player eliminated status: true
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 0
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 3 answered question 10
+Player 3 eliminated: true
+Player 4 submitting answer 1 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 0
+Answer correct: true
+Player progress after increment: 2
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 2
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 1
+Player 4 submitting answer 2 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 2
+Answer correct: true
+Player progress after increment: 3
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 3
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 2
+Player 4 submitting answer 3 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 3
+Answer correct: true
+Player progress after increment: 4
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 4
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 3
+Player 4 submitting answer 4 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 4
+Answer correct: true
+Player progress after increment: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 5
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 4
+Player 4 submitting answer 5 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 5
+Answer correct: true
+Player progress after increment: 6
+Player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65, Stage: 0, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 6
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 5
+Player 4 submitting answer 6 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 6
+Answer correct: true
+Player progress after increment: 7
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 7
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 6
+Player 4 submitting answer 7 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 7
+Answer correct: true
+Player progress after increment: 8
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 8
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 7
+Player 4 submitting answer 8 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 8
+Answer correct: true
+Player progress after increment: 9
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 9
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 8
+Player 4 submitting answer 9 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 9
+Answer correct: true
+Player progress after increment: 10
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 10
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 9
+Player 4 submitting answer 10 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 10
+Answer correct: true
+Player progress after increment: 11
+Player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65, Stage: 1, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 11
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 10
+Player 4 submitting answer 11 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 11
+Answer correct: true
+Player progress after increment: 12
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 12
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 11
+Player 4 submitting answer 12 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 12
+Answer correct: false
+Player progress after increment: 13
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 13
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 12
+Player 4 submitting answer 13 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 13
+Answer correct: true
+Player progress after increment: 14
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 14
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+All finished: false
+Player 4 answered question 13
+Player 4 submitting answer 14 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 14
+Answer correct: true
+Player progress after increment: 15
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Player progress: 15
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 4
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 4 answered question 14
+Player 4 submitting answer 15 of 15...
+Submitting answer for player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Current question: 15
+Answer correct: true
+Player progress after increment: 16
+Player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65, Stage: 2, Score: 4
+Eliminating player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65, Reason: StageFailed
+Player eliminated status: true
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 0
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 4 answered question 15
+Player 4 eliminated: true
+Player 5 submitting answer 1 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 0
+Answer correct: true
+Player progress after increment: 2
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 2
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 1 correctly
+Player 5 submitting answer 2 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 2
+Answer correct: true
+Player progress after increment: 3
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 3
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 2 correctly
+Player 5 submitting answer 3 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 3
+Answer correct: true
+Player progress after increment: 4
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 4
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 3 correctly
+Player 5 submitting answer 4 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 4
+Answer correct: true
+Player progress after increment: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 5
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 4 correctly
+Player 5 submitting answer 5 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 5
+Answer correct: true
+Player progress after increment: 6
+Player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc, Stage: 0, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 6
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 5 correctly
+Player 5 submitting answer 6 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 6
+Answer correct: true
+Player progress after increment: 7
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 7
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 6 correctly
+Player 5 submitting answer 7 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 7
+Answer correct: true
+Player progress after increment: 8
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 8
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 7 correctly
+Player 5 submitting answer 8 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 8
+Answer correct: true
+Player progress after increment: 9
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 9
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 8 correctly
+Player 5 submitting answer 9 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 9
+Answer correct: true
+Player progress after increment: 10
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 10
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 9 correctly
+Player 5 submitting answer 10 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 10
+Answer correct: true
+Player progress after increment: 11
+Player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc, Stage: 1, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 11
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 10 correctly
+Player 5 submitting answer 11 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 11
+Answer correct: true
+Player progress after increment: 12
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 12
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 11 correctly
+Player 5 submitting answer 12 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 12
+Answer correct: true
+Player progress after increment: 13
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 13
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 12 correctly
+Player 5 submitting answer 13 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 13
+Answer correct: true
+Player progress after increment: 14
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 14
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+All finished: false
+Player 5 answered question 13 correctly
+Player 5 submitting answer 14 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 14
+Answer correct: true
+Player progress after increment: 15
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 15
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 1
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 5 answered question 14 correctly
+Player 5 submitting answer 15 of 15...
+Submitting answer for player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Current question: 15
+Answer correct: true
+Player progress after increment: 16
+Player: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc, Stage: 2, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 0
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 5 answered question 15 correctly
+Player 5 score: 15
+Player 6 submitting answer 1 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 0
+Answer correct: true
+Player progress after increment: 2
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 2
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 1 correctly
+Player 6 submitting answer 2 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 2
+Answer correct: true
+Player progress after increment: 3
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 3
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 2 correctly
+Player 6 submitting answer 3 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 3
+Answer correct: true
+Player progress after increment: 4
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 4
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 3 correctly
+Player 6 submitting answer 4 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 4
+Answer correct: true
+Player progress after increment: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 5
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 4 correctly
+Player 6 submitting answer 5 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 5
+Answer correct: true
+Player progress after increment: 6
+Player: 0x976ea74026e726554db657fa54763abd0c3a0aa9, Stage: 0, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 6
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 5 correctly
+Player 6 submitting answer 6 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 6
+Answer correct: true
+Player progress after increment: 7
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 7
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 6 correctly
+Player 6 submitting answer 7 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 7
+Answer correct: true
+Player progress after increment: 8
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 8
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 7 correctly
+Player 6 submitting answer 8 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 8
+Answer correct: true
+Player progress after increment: 9
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 9
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 8 correctly
+Player 6 submitting answer 9 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 9
+Answer correct: true
+Player progress after increment: 10
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 10
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 9 correctly
+Player 6 submitting answer 10 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 10
+Answer correct: true
+Player progress after increment: 11
+Player: 0x976ea74026e726554db657fa54763abd0c3a0aa9, Stage: 1, Score: 5
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 11
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 10 correctly
+Player 6 submitting answer 11 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 11
+Answer correct: true
+Player progress after increment: 12
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 12
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 11 correctly
+Player 6 submitting answer 12 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 12
+Answer correct: true
+Player progress after increment: 13
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 13
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 12 correctly
+Player 6 submitting answer 13 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 13
+Answer correct: true
+Player progress after increment: 14
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 14
+After loop - Active players: 3
+Winner count: 2
+Player not finished: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+All finished: false
+Player 6 answered question 13 correctly
+Player 6 submitting answer 14 of 15...
+Submitting answer for player: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Current question: 14
+Answer correct: true
+Player progress after increment: 15
+Calling _checkGameEnd
+Active players count initialization: 0
+Player not eliminated: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Player progress: 16
+Player finished, finish time: 1746213990
+Player not eliminated: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Player progress: 16
+Player finished, finish time: 1746214037
+Player not eliminated: 0x976ea74026e726554db657fa54763abd0c3a0aa9
+Player progress: 15
+After loop - Active players: 3
+Winner count: 2
+All finished: true
+Total lost stakes: 150000000000000000000
+Creator share: 30000000000000000000
+Platform share: 30000000000000000000
+Winner share: 45000000000000000000
+Transferring to winner: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8
+Transferring to winner: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc
+Refunding player: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc
+Refund amount: 15000000000000000000
+Refunding player: 0x90f79bf6eb2c4f870365e785982e1f101e93b906
+Refund amount: 35000000000000000000
+Refunding player: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65
+Refund amount: 0
+Player 6 answered question 14 correctly
+Game ended early after Player 6's answer 14. Game state: 2
+
+Test 4: Verifying game ended and badge was minted...
+Game state: 2
+Badge owner (should be Player 1): 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+Badge token URI: https://ipfs.io/ipfs/bafkreib27pyy3ll4o24vtysgngdefsjnnrrh3ennqy2kpce2lbz76ro72i
+
+GameInstance tests completed.
